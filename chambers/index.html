@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mystery Keep</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="mist"></div>
+
+  <main class="game-shell">
+    <div class="logo-wrap">
+      <div class="logo-shadow"></div>
+      <h1 class="logo">MYSTERY KEEP</h1>
+      <p class="tagline">THE DAILY DEDUCTION QUEST!</p>
+    </div>
+
+    <section class="card">
+      <div class="chapter">CHAMBER 01</div>
+
+      <div class="story">
+        <p>
+          The royal baker swore nobody entered the kitchen overnight.
+        </p>
+
+        <p>
+          At dawn, the oven was still warm.
+        </p>
+
+        <p>
+          Snow covered the courtyard outside every door and window.
+        </p>
+
+        <p>
+          The guard captain's boots were completely dry.
+        </p>
+      </div>
+
+      <div class="question">
+        WHICH DETAIL PROVES SOMEONE IS LYING?
+      </div>
+
+      <div class="choices">
+        <button class="choice" data-answer="wrong">THE OVEN</button>
+        <button class="choice" data-answer="correct">THE BOOTS</button>
+        <button class="choice" data-answer="wrong">THE SNOW</button>
+        <button class="choice" data-answer="wrong">THE WINDOW</button>
+      </div>
+
+      <div id="result" class="result hidden"></div>
+
+      <button id="reset" class="reset hidden">TRY ANOTHER CHAMBER</button>
+    </section>
+
+    <footer class="footer">
+      1 DAILY RIDDLE • 3 GUESSES • STREAKS COMING SOON
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
