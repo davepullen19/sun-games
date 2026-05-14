@@ -1,19 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { getDailyChamber } from './data';
 import './chambers.css';
 
-type Answer = 'correct' | 'wrong';
-
-const choices: { label: string; answer: Answer }[] = [
-  { label: 'THE OVEN',   answer: 'wrong'   },
-  { label: 'THE BOOTS',  answer: 'correct' },
-  { label: 'THE SNOW',   answer: 'wrong'   },
-  { label: 'THE WINDOW', answer: 'wrong'   },
-];
-
 export default function ChambersPage() {
-  const [answered, setAnswered] = useState<Answer | null>(null);
+  const chamber = getDailyChamber();
+  const [answered, setAnswered] = useState<'correct' | 'wrong' | null>(null);
 
   return (
     <>
@@ -21,24 +14,23 @@ export default function ChambersPage() {
       <main className="game-shell">
         <div className="logo-wrap">
           <div className="logo-shadow" />
-          <h1 className="logo">MYSTERY KEEP</h1>
+          <h1 className="logo">CHAMBERS</h1>
           <p className="tagline">THE DAILY DEDUCTION QUEST!</p>
         </div>
 
         <section className="card">
-          <div className="chapter">CHAMBER 01</div>
+          <div className="chapter">CHAMBER {String(chamber.id).padStart(2, '0')}</div>
 
           <div className="story">
-            <p>The royal baker swore nobody entered the kitchen overnight.</p>
-            <p>At dawn, the oven was still warm.</p>
-            <p>Snow covered the courtyard outside every door and window.</p>
-            <p>The guard captain&apos;s boots were completely dry.</p>
+            {chamber.story.map((line, i) => (
+              <p key={i}>{line}</p>
+            ))}
           </div>
 
-          <div className="question">WHICH DETAIL PROVES SOMEONE IS LYING?</div>
+          <div className="question">{chamber.question}</div>
 
           <div className="choices">
-            {choices.map(({ label, answer }) => (
+            {chamber.choices.map(({ label, answer }) => (
               <button
                 key={label}
                 className="choice"
@@ -54,9 +46,7 @@ export default function ChambersPage() {
             <div className="result correct">
               <strong>Correct.</strong>
               <br /><br />
-              If nobody entered the kitchen, the guard captain could not have inspected the room.
-              Yet his boots are completely dry despite snow covering every entrance.
-              Someone entered the castle — and lied about it.
+              {chamber.correct}
             </div>
           )}
 
@@ -64,9 +54,7 @@ export default function ChambersPage() {
             <div className="result wrong">
               <strong>Not quite.</strong>
               <br /><br />
-              The contradiction is physical evidence.
-              The snow means anyone entering would track in moisture.
-              The dry boots expose the lie.
+              {chamber.wrong}
             </div>
           )}
 

@@ -21,7 +21,7 @@ export default function Home() {
         </Link>
         <Link href="/chambers" className={styles.card}>
           <span className={styles.cardBadge}>Daily</span>
-          <h2 className={styles.cardTitle}>Mystery Keep</h2>
+          <h2 className={styles.cardTitle}>Chambers</h2>
           <p className={styles.cardDesc}>a deduction quest</p>
         </Link>
       </div>
